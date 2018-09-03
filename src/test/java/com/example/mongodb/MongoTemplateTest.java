@@ -181,4 +181,16 @@ public class MongoTemplateTest {
         IndexOperations indexOperations = mongoTemplate.indexOps("account");
         indexOperations.ensureIndex(index);
     }
+
+    @Test
+    public void patternregex(){
+        Aggregation aggregation = Aggregation.newAggregation(Aggregation.match(Criteria.where("_id").regex("^熊")),Aggregation.project("_id","sex","age"));
+        AggregationResults<Account> aggregationResults = mongoTemplate.aggregate(aggregation,"account",Account.class);
+        List<Account>list = aggregationResults.getMappedResults();
+        for (Account account:list){
+            System.out.println(account);
+        }
+        //STARTING_WITH:  ^%s   ENDING_WITH:   %s$  CONTAINING: .*%s.  EXACT:  ^%s$  default: prepareAndEscapeStringBeforeApplyingLikeRegex
+        //MongoRegexCreator类 源码
+    }
 }
