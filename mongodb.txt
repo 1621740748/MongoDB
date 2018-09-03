@@ -1,0 +1,37 @@
+1、MongoDB是什么？ 答：以文档形式作为存储数据方式的一种非关系型数据库
+
+2、MongoDB能干什么？ 答：作为缓存服务器
+
+3、MongoDB的特点？ 答：
+    *面向集合存储，易存储对象类型的数据。
+    *模式自由。
+    *支持动态查询。
+    *支持完全索引，包含内部对象。
+    *支持查询。
+    *支持复制和故障恢复。
+    *使用高效的二进制数据存储，包括大型对象（如视频等）。
+    *自动处理碎片，以支持云计算层次的扩展性。
+    *支持RUBY，PYTHON，JAVA，C ，PHP，C#等多种语言。
+    *文件存储格式为BSON（一种JSON的扩展）。
+    *可通过网络访问。
+
+4、MongoDB为什么被选用？ 答：因为MongoDB伸缩性高、能存储丰富的数据结构、提供复杂查询机制的数据库
+
+5、在项目中如何整合MongoDB
+    答：引入以下依赖
+    <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-data-mongodb</artifactId>
+    </dependency>
+    注：引用以下依赖、可用@DataMongoTest注解自动注入MongoTemplate模板
+    <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-test-autoconfigure</artifactId>
+    </dependency>
+
+6、在项目中MongoDB具体用途
+    实现了用户验证模块
+    需要在Bean类中添加注释 @Document import org.springframework.data.mongodb.core.mapping.Document;
+    默认创建的collection是类名首字母小写 example: class:AccountIdentification collection;accountIdentification
+    用户验证模块通过向前台返回加密串，同时后台插入后，等待第二次校验包括加密串和其他用户信息是否一致来更改激活状态
+    若店员登陆还需判断店长是否登陆，通过比较时间判断店长登陆，店员通过ip地址匹配店长ip地址完成登陆
