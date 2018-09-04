@@ -17,12 +17,14 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.*;
 import org.springframework.data.mongodb.core.index.Index;
 import org.springframework.data.mongodb.core.index.IndexOperations;
+import org.springframework.data.mongodb.core.mapreduce.MapReduceResults;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -192,5 +194,19 @@ public class MongoTemplateTest {
         }
         //STARTING_WITH:  ^%s   ENDING_WITH:   %s$  CONTAINING: .*%s.  EXACT:  ^%s$  default: prepareAndEscapeStringBeforeApplyingLikeRegex
         //MongoRegexCreator类 源码
+    }
+
+    /**
+     * 语法大致意思按照性别分类，查询出年龄的总和
+     */
+    @Test
+    public void map_reduce(){
+        String mapfuction = "function(){ emit(this.sex,this.age) }";
+        String reducefunction = "function(key,values){ return Array.sum( values ) }";
+        MapReduceResults<String> mapReduceResults = mongoTemplate.mapReduce("account",mapfuction,reducefunction,String.class);
+        Iterator<String> iterable = mapReduceResults.iterator();
+        while (iterable.hasNext()){
+            System.out.println(iterable.next());
+        }
     }
 }

@@ -7,6 +7,8 @@ import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 /**
  * 实体类
  */
@@ -23,4 +25,5 @@ public class Account {
     private int age;
     private String []hobby;
     private Organization organization;
+    private List<String> list;
 }
