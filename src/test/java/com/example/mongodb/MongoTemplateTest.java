@@ -43,11 +43,12 @@ public class MongoTemplateTest {
         account.setTel("13609893206");
         account.setUsername("熊峰");
         organization.setDirector("xf");
-        organization.setId("1");
+        organization.setId("43");
         organization.setName("asd");
         account.setHobby(hobby);
         account.setOrganization(organization);
-        mongoTemplate.insert(account);
+        mongoTemplate.save(organization);
+        mongoTemplate.save(account);
     }
 
     @Test

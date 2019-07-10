@@ -1,9 +1,8 @@
 package com.example.mongodb.model;
 
-import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-@Document
+@Document(collection="organization")
 public class Organization {
     @Id
     private String id;

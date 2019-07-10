@@ -3,12 +3,13 @@ package com.example.mongodb.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * 实体类
  */
-@Document
+@Document(collection="account")
 public class Account {
     @Id
     private String username;
@@ -18,6 +19,7 @@ public class Account {
     @Indexed(unique = true,direction = IndexDirection.DESCENDING)
     private int age;
     private String []hobby;
+    @DBRef
     private Organization organization;
 	public String getUsername() {
 		return username;
