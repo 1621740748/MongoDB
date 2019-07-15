@@ -1,4 +1,4 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/test
+      uri: mongodb://10.66.82.233:27017,10.66.82.233:27018,10.66.82.233:27019/test?slaveOk=true&replicaSet=rs0&write=1&readPreference=secondaryPreferred&connectTimeoutMS=300000
