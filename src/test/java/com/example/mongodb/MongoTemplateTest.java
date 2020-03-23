@@ -85,6 +85,7 @@ public class MongoTemplateTest {
     public void findByUsername(){
         Query query = new Query(Criteria.where("_id").is("熊峰"));
         Account account = mongoTemplate.findOne(query,Account.class);
+        System.out.println("**********org:"+account.getOrganization().getName());
         Assert.assertEquals("熊峰",account.getUsername());
     }
 

@@ -1,4 +1,4 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://192.168.1.5:27017/test?slaveOk=true&write=1&readPreference=secondaryPreferred&connectTimeoutMS=300000
+      uri: mongodb://192.168.0.104:27017/paydb?slaveOk=true&write=1&readPreference=secondaryPreferred&connectTimeoutMS=300000
